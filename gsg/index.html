@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flavo Multi for GSG</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="flavo-favicon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Prezentacja Flavo Multi dla właściciela GSG (Mikołaj 29.10.2026). Zrzuty z panelu na danych demo, w gsg/. */
+/* Slajdy na całą wysokość, na zmianę ciemna zieleń i krem; jeden wygląd niezależnie od motywu */
+:root {
+  color-scheme: light;
+  --forest: #1c3a2b;
+  --forest-2: #24483a;
+  --forest-3: #2f5a47;
+  --cream: #f5eee3;
+  --paper: #fbf7f0;
+  --sand: #e7d6bd;
+  --ink: #1d2a23;
+  --ink-soft: #5b6a61;
+  --orange: #f0953f;
+  --clay: #c75f32;
+  --moss: #3f6b52;
+  --mustard: #c99a2e;
+  --line: rgba(29,42,35,.12);
+  --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+body { margin: 0; background: var(--forest); color: var(--ink); font: 400 1.05rem/1.6 var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+h1, h2, h3 { margin: 0; letter-spacing: -.03em; text-wrap: balance; }
+p { margin: 0; }
+
+.slide { min-height: 100svh; scroll-snap-align: start; position: relative; display: flex; align-items: center; padding-block: 5rem; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); overflow: hidden; }
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; }
+.wrap > * { min-width: 0; }
+.dark { background: var(--forest); color: var(--cream); }
+.light { background: var(--cream); }
+.paper { background: var(--paper); }
+
+.kicker { font-weight: 700; font-size: .8rem; letter-spacing: .28em; text-transform: uppercase; color: var(--clay); }
+.dark .kicker { color: var(--cream); }
+.kicker b { color: var(--orange); font-weight: 700; }
+h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); font-weight: 800; line-height: 1.02; margin-top: .9rem; }
+h2 em { font-style: normal; color: var(--orange); }
+.light h2 em, .paper h2 em { color: var(--clay); }
+.lead { font-size: clamp(1.05rem, 1.6vw, 1.22rem); color: var(--ink-soft); max-width: 36rem; margin-top: 1.1rem; }
+.dark .lead, .hero .lead, .close .lead { color: rgba(245,238,227,.75); }
+
+/* Hero */
+.hero { background: radial-gradient(120% 90% at 85% 15%, var(--forest-3) 0%, var(--forest) 55%); color: var(--cream); }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 3rem; align-items: center; }
+.hero h1 { font-size: clamp(3rem, 7.4vw, 6.2rem); font-weight: 800; line-height: .95; margin-top: 1.4rem; }
+.hero h1 span { display: block; color: var(--orange); }
+.hero .lead { margin-top: 1.6rem; }
+.logo { display: flex; align-items: center; gap: .7rem; margin-top: 2.4rem; font-size: .9rem; color: rgba(245,238,227,.65); }
+.logo svg { height: 26px; width: auto; }
+
+.stage { position: relative; aspect-ratio: 1.05 / 1; }
+.stage svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.wires path { fill: none; stroke: var(--orange); stroke-width: 2; stroke-dasharray: 6 7; animation: flow 1.6s linear infinite; opacity: .9; }
+.wires circle { fill: #fff3e0; filter: drop-shadow(0 0 6px var(--orange)); }
+@keyframes flow { to { stroke-dashoffset: -26; } }
+.co { position: absolute; top: 0; width: 30%; background: var(--paper); color: var(--ink); border-radius: 18px; padding: .9rem .9rem 1rem; box-shadow: 0 18px 40px -18px rgba(0,0,0,.55); animation: float 6s ease-in-out infinite; }
+.co:nth-of-type(1) { left: 0; top: 4%; }
+.co:nth-of-type(2) { left: 35%; top: 0; animation-delay: -2s; }
+.co:nth-of-type(3) { left: 70%; top: 4%; animation-delay: -4s; }
+.co::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: -14px; height: 14px; border-radius: 0 0 50% 50%; background: var(--c); opacity: .9; }
+.co .ic { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 18%, transparent); color: var(--c); }
+.co .ic svg { width: 22px; height: 22px; }
+.co b { display: block; font-size: 1rem; margin-top: .6rem; letter-spacing: -.01em; }
+.co small { display: block; font-size: .74rem; line-height: 1.3; color: var(--ink-soft); margin-top: .15rem; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+.screen { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 22px; overflow: hidden; background: var(--paper); box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08); }
+.screen img { width: 100%; }
+.plinth { position: absolute; left: -6%; right: -6%; bottom: -5%; height: 9%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,149,63,.35), transparent); filter: blur(6px); }
+
+/* Problem */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.before { display: grid; gap: .8rem; }
+.before > div { display: flex; gap: .9rem; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 1rem 1.1rem; }
+.before > div > span { flex: none; width: 34px; height: 34px; border-radius: 10px; background: #f3dfd3; color: var(--clay); display: grid; place-items: center; font-weight: 800; }
+.before b { display: block; font-size: 1rem; }
+.before p { font-size: .92rem; color: var(--ink-soft); }
+
+/* Feature slides */
+.feat { display: grid; grid-template-columns: .85fr 1.4fr; gap: 3.5rem; align-items: center; }
+.feat.flip { grid-template-columns: 1.4fr .85fr; }
+.feat.flip .txt { order: 2; }
+.shot { border-radius: 20px; overflow: hidden; background: var(--paper); box-shadow: 0 30px 70px -30px rgba(28,58,43,.55), 0 0 0 1px var(--line); }
+.dark .shot { box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08); }
+.wins { list-style: none; padding: 0; margin: 1.8rem 0 0; display: grid; gap: .95rem; }
+.wins li { display: grid; grid-template-columns: 28px 1fr; gap: .8rem; }
+.wins li::before { content: ""; width: 28px; height: 28px; border-radius: 50%; background: var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231c3a2b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat; }
+.light .wins li::before, .paper .wins li::before { background-color: #f6dccb; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c75f32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+.wins b { display: block; line-height: 1.35; }
+.wins span { display: block; font-size: .93rem; color: var(--ink-soft); margin-top: .15rem; }
+.dark .wins span { color: rgba(245,238,227,.66); }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.duo .shot:nth-child(2) { margin-top: 2.5rem; }
+
+/* Flow */
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; margin-top: 3rem; counter-reset: s; }
+.step { position: relative; background: var(--forest-2); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 1.2rem 1.1rem 1.3rem; }
+.step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--c); color: #fff; font-weight: 800; font-size: .85rem; }
+.step b { display: block; margin-top: .9rem; font-size: 1.08rem; }
+.step p { font-size: .88rem; color: rgba(245,238,227,.66); margin-top: .35rem; line-height: 1.45; }
+.step:not(:last-child)::after { content: ""; position: absolute; top: 2.05rem; right: -.8rem; width: .8rem; border-top: 2px dashed var(--orange); }
+
+/* Phone */
+.phone { width: min(320px, 78vw); margin: 0 auto; border-radius: 42px; padding: 10px; background: #0f1f17; box-shadow: 0 40px 80px -30px rgba(0,0,0,.75), inset 0 0 0 2px rgba(255,255,255,.08); }
+.phone img { border-radius: 33px; }
+
+/* Roles */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.6rem; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 1.1rem 1.4rem; }
+#team .cards { gap: .7rem; margin-top: 1.8rem; }
+#team .card h3 { margin-top: .6rem; font-size: 1.15rem; }
+.card .tag { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .65rem; border-radius: 999px; background: color-mix(in srgb, var(--c) 16%, transparent); color: var(--c); }
+.card h3 { font-size: 1.3rem; margin-top: .9rem; }
+.card p { font-size: .95rem; color: var(--ink-soft); margin-top: .45rem; }
+
+/* Close */
+.close { background: radial-gradient(110% 90% at 15% 85%, var(--forest-3) 0%, var(--forest) 60%); color: var(--cream); text-align: center; }
+.close h2 { font-size: clamp(2.6rem, 6vw, 5rem); }
+.close .lead { margin: 1.3rem auto 0; }
+.next { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 3rem auto 0; max-width: 920px; text-align: left; }
+.next div { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 1.3rem; }
+.next small { color: var(--orange); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .72rem; }
+.next b { display: block; margin-top: .45rem; font-size: 1.05rem; }
+.next p { font-size: .9rem; color: rgba(245,238,227,.66); margin-top: .3rem; }
+.btn { display: inline-flex; align-items: center; gap: .6rem; margin-top: 2.6rem; padding: 1rem 1.6rem; border-radius: 999px; background: var(--orange); color: var(--forest); font-weight: 800; text-decoration: none; transition: transform .2s; }
+.btn:hover { transform: translateY(-2px); }
+.who { margin-top: 2.2rem; display: inline-flex; align-items: center; gap: .9rem; text-align: left; }
+.who img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; border: 2px solid var(--orange); }
+.who b { display: block; }
+.who a { color: rgba(245,238,227,.75); text-decoration: none; font-size: .95rem; }
+.note { font-size: .78rem; color: rgba(245,238,227,.45); margin-top: 3rem; }
+
+/* Navigation dots */
+.dots { position: fixed; right: calc(18px + env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: grid; gap: 10px; z-index: 10; }
+.dots a { width: 10px; height: 10px; border-radius: 50%; background: rgba(240,149,63,.3); border: 1px solid rgba(240,149,63,.7); transition: transform .2s, background .2s; }
+.dots a.on { background: var(--orange); transform: scale(1.35); }
+
+/* Reveal */
+.rv.in { animation: rise .8s ease both; }
+@keyframes rise { from { transform: translateY(18px); } }
+@media (prefers-reduced-motion: reduce) { .rv.in { animation: none; } .co, .wires path { animation: none; } }
+
+@media (max-width: 900px) {
+  html { scroll-snap-type: none; }
+  .slide { min-height: auto; padding-block: 4.5rem; }
+  .hero { min-height: 100svh; }
+  .hero .wrap, .split, .feat, .feat.flip { grid-template-columns: 1fr; gap: 2.4rem; }
+  .feat.flip .txt { order: 0; }
+  .stage { aspect-ratio: 1 / 1.02; }
+  .co { padding: .6rem .6rem .7rem; border-radius: 13px; }
+  .co .ic { width: 30px; height: 30px; border-radius: 8px; }
+  .co .ic svg { width: 17px; height: 17px; }
+  .co b { font-size: .82rem; }
+  .co small { display: none; }
+  .flow { grid-template-columns: 1fr; }
+  .step:not(:last-child)::after { top: auto; bottom: -.8rem; left: 2rem; right: auto; width: 0; height: .8rem; border-top: 0; border-left: 2px dashed var(--orange); }
+  .cards, .next { grid-template-columns: 1fr; }
+  .duo .shot:nth-child(2) { margin-top: 1.2rem; }
+  .dots { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="dots" aria-label="Slides"></nav>
+
+<!-- 1. Hero -->
+<section class="slide hero" id="start">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">Flavo <b>Multi</b></div>
+      <h1>Three companies.<span>One panel.</span></h1>
+      <p class="lead">GSG, Vegamálun and Malbik run from one place. Jobs, crews, calendar, warehouse, fleet and money, for each company or for the whole group, in one click.</p>
+      <div class="logo">
+        <svg viewBox="48 53 817 304" aria-label="Flavo"><g><path fill="#F5EEE3" d="M73 181V147C73 109 102 78 140 78H263C282 78 295 91 295 110C295 137 274 158 245 158H143C119 158 99 167 83 185C79 191 73 189 73 181Z"/><path fill="#F0953F" d="M73 250V236C73 200 101 171 138 171H188C208 171 222 184 222 203C222 227 201 244 175 244H117C103 244 91 249 82 257C77 262 73 259 73 250Z"/><ellipse fill="#F4D28B" cx="114" cy="292" rx="41" ry="40"/></g><g fill="#F5EEE3"><path d="M339 273V198H330Q323 198 323 191V177Q323 169 331 169H339V163C339 140 354 126 378 126H393Q400 126 400 133V147Q400 154 393 154H385Q374 154 374 165V169H393Q400 169 400 176V191Q400 198 393 198H374V273Q374 280 367 280H346Q339 280 339 273Z"/><rect x="414" y="126" width="35" height="154" rx="8"/><path fill-rule="evenodd" d="M551 181V176Q551 169 558 169H578Q585 169 585 176V273Q585 280 578 280H558Q551 280 551 273V268C541 278 530 282 514 282C482 282 459 257 459 225C459 192 483 167 514 167C530 167 542 172 551 181ZM550 225C550 209 538 197 522 197C506 197 493 209 493 225C493 240 506 252 522 252C538 252 550 240 550 225Z"/><path d="M589 175Q586 169 593 169H618Q624 169 627 175L653 233L679 175Q682 169 688 169H713Q721 169 718 176L672 274Q669 280 663 280H643Q636 280 633 274Z"/><path fill-rule="evenodd" d="M840 225C840 258 812 283 776 283C739 283 713 258 713 225C713 192 740 167 776 167C813 167 840 192 840 225ZM805 225C805 209 793 196 776 196C759 196 747 209 747 225C747 240 759 253 776 253C793 253 805 240 805 225Z"/></g></svg>
+        <span>Prepared for the GSG group</span>
+      </div>
+    </div>
+    <div class="stage rv" aria-hidden="true">
+      <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M15 26 C15 38, 50 34, 50 46" vector-effect="non-scaling-stroke"/>
+        <path d="M50 22 L50 46" vector-effect="non-scaling-stroke"/>
+        <path d="M85 26 C85 38, 50 34, 50 46" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="co" style="--c: var(--clay)">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></div>
+        <b>GSG</b><small>Car park line marking</small>
+      </div>
+      <div class="co" style="--c: var(--moss)">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21L10 3M17 21L14 3M12 6v2M12 12v2M12 18v2"/></svg></div>
+        <b>Vegamálun</b><small>Road marking</small>
+      </div>
+      <div class="co" style="--c: var(--mustard)">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 20l2-6h10l2 6"/><path d="M13 3l-3 5h4l-3 5"/></svg></div>
+        <b>Malbik</b><small>Asphalt, EV charging, paving</small>
+      </div>
+      <div class="screen"><img src="img/cockpit.jpg" alt="Flavo Multi cockpit"></div>
+      <div class="plinth"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Today -->
+<section class="slide light" id="today">
+  <div class="wrap split">
+    <div class="rv">
+      <div class="kicker">The usual picture</div>
+      <h2>Three companies usually means <em>three of everything.</em></h2>
+      <p class="lead">Separate calendars, separate spreadsheets, separate phone calls. The owner sees the full picture only after asking around.</p>
+    </div>
+    <div class="before rv">
+      <div><span>1</span><div><b>Who is where this week?</b><p>Crews and vehicles planned in different places, double bookings found on site.</p></div></div>
+      <div><span>2</span><div><b>What does this job cost?</b><p>Quotes priced by feel, different rates depending on who prepares them.</p></div></div>
+      <div><span>3</span><div><b>Do we have enough paint?</b><p>Stock lives in someone's head until it runs out mid-job.</p></div></div>
+      <div><span>4</span><div><b>What is finished but not invoiced?</b><p>Money for completed work waits because nobody has the list.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Cockpit -->
+<section class="slide dark" id="cockpit">
+  <div class="wrap feat">
+    <div class="txt rv">
+      <div class="kicker">The <b>cockpit</b></div>
+      <h2>The whole group at a glance, <em>every morning.</em></h2>
+      <ul class="wins">
+        <li><div><b>One screen, three companies</b><span>Jobs in progress, jobs starting this week, open quotes and vehicles out of service, side by side.</span></div></li>
+        <li><div><b>Switch company in one click</b><span>All, GSG, Vegamálun or Malbik. The panel remembers your last choice.</span></div></li>
+        <li><div><b>Problems come to you</b><span>Low stock and broken vehicles show up on the cockpit before they stop a crew.</span></div></li>
+      </ul>
+    </div>
+    <div class="shot rv"><img src="img/cockpit.jpg" alt="Cockpit with all three companies"></div>
+  </div>
+</section>
+
+<!-- 4. Calendar -->
+<section class="slide paper" id="calendar">
+  <div class="wrap feat flip">
+    <div class="txt rv">
+      <div class="kicker">Calendar</div>
+      <h2>Every crew knows <em>where to be.</em></h2>
+      <ul class="wins">
+        <li><div><b>Crews as rows, days as columns</b><span>Each company has its own calendar, so planning stays clear.</span></div></li>
+        <li><div><b>Status in colour</b><span>Quote, scheduled, in progress, done, invoiced. Visible without opening a job.</span></div></li>
+        <li><div><b>Crew and vehicles on the job</b><span>Only the crews and vehicles of that company can be picked, so nothing gets mixed up.</span></div></li>
+      </ul>
+    </div>
+    <div class="shot rv"><img src="img/calendar.jpg" alt="Calendar by crew"></div>
+  </div>
+</section>
+
+<!-- 5. Calculators -->
+<section class="slide light" id="quotes">
+  <div class="wrap feat">
+    <div class="txt rv">
+      <div class="kicker">Quotes</div>
+      <h2>A price in minutes, <em>the same rates for everyone.</em></h2>
+      <ul class="wins">
+        <li><div><b>Car park and road marking calculators</b><span>Enter bays, metres of lines, crossings and symbols. Net, VAT and total appear right away.</span></div></li>
+        <li><div><b>One price list for the group</b><span>Rates are set once by the administrator. Every quote and every job uses them.</span></div></li>
+        <li><div><b>Minimum order built in</b><span>Small jobs are topped up to the minimum automatically, so they are never priced at a loss.</span></div></li>
+      </ul>
+    </div>
+    <div class="shot rv"><img src="img/calculators.jpg" alt="Car park marking calculator"></div>
+  </div>
+</section>
+
+<!-- 6. Warehouse and fleet -->
+<section class="slide dark" id="stock">
+  <div class="wrap feat flip">
+    <div class="txt rv">
+      <div class="kicker">Warehouse <b>&amp;</b> fleet</div>
+      <h2>Paint, parts and vehicles <em>under control.</em></h2>
+      <ul class="wins">
+        <li><div><b>Stock goes down by itself</b><span>When a job is marked done, the materials used are taken off the warehouse once.</span></div></li>
+        <li><div><b>Reorder warnings</b><span>Each item has its own minimum. Below it, the cockpit tells you.</span></div></li>
+        <li><div><b>Fleet status per company</b><span>In use or out of service, why, when it is back, mileage and next inspection.</span></div></li>
+      </ul>
+    </div>
+    <div class="duo rv">
+      <div class="shot"><img src="img/warehouse.jpg" alt="Warehouse"></div>
+      <div class="shot"><img src="img/fleet.jpg" alt="Fleet"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Finance -->
+<section class="slide paper" id="finance">
+  <div class="wrap feat">
+    <div class="txt rv">
+      <div class="kicker">Finance</div>
+      <h2>See where the money is, <em>and where it is waiting.</em></h2>
+      <ul class="wins">
+        <li><div><b>Revenue per company and per month</b><span>Compare GSG, Vegamálun and Malbik on one chart, or look at one company alone.</span></div></li>
+        <li><div><b>Done, not invoiced</b><span>A running total of finished work that still needs an invoice, so nothing is forgotten.</span></div></li>
+        <li><div><b>Margin after materials</b><span>Revenue against the materials used on each job. Visible only to administrators.</span></div></li>
+      </ul>
+    </div>
+    <div class="shot rv"><img src="img/finance.jpg" alt="Finance overview"></div>
+  </div>
+</section>
+
+<!-- 8. Flow -->
+<section class="slide dark" id="flow">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">One job, <b>start to finish</b></div>
+      <h2>From the first call <em>to the invoice.</em></h2>
+      <p class="lead">Every job follows the same path in every company, so anyone can pick it up and see where it stands.</p>
+    </div>
+    <div class="flow rv">
+      <div class="step" style="--c:#4f6b85"><b>Quote</b><p>Price from the calculator, saved on the job.</p></div>
+      <div class="step" style="--c:#7d4f73"><b>Scheduled</b><p>Dates, crew and vehicles in the calendar.</p></div>
+      <div class="step" style="--c:var(--clay)"><b>In progress</b><p>The cockpit shows which crews are on site.</p></div>
+      <div class="step" style="--c:var(--moss)"><b>Done</b><p>Materials come off stock automatically.</p></div>
+      <div class="step" style="--c:#5e6b62"><b>Invoiced</b><p>Invoice number and date, counted in Finance.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Access and phone -->
+<section class="slide light" id="team">
+  <div class="wrap split">
+    <div class="rv">
+      <div class="kicker">Team <b style="color:var(--clay)">&amp;</b> access</div>
+      <h2>Everyone sees <em>what they need.</em></h2>
+      <p class="lead">Works on a phone, so foremen can check the plan on site. Access is set per person.</p>
+      <div class="cards" style="grid-template-columns:1fr">
+        <div class="card" style="--c:var(--clay)"><span class="tag">Administrator</span><h3>The owner</h3><p>Everything, including Finance, calculator rates and user accounts.</p></div>
+        <div class="card" style="--c:var(--moss)"><span class="tag">Manager</span><h3>Office and foremen</h3><p>Jobs, calendar, warehouse, fleet and crews. No access to Finance.</p></div>
+        <div class="card" style="--c:var(--mustard)"><span class="tag">One company</span><h3>Company accounts</h3><p>An account assigned to one company sees only that company's data.</p></div>
+      </div>
+    </div>
+    <div class="rv"><div class="phone"><img src="img/phone.jpg" alt="Cockpit on a phone"></div></div>
+  </div>
+</section>
+
+<!-- 10. Next -->
+<section class="slide close" id="next">
+  <div class="wrap rv">
+    <div class="kicker">Flavo <b>Multi</b></div>
+    <h2>Ready to try <span style="color:var(--orange)">with your data.</span></h2>
+    <p class="lead">The demo is live with sample data. We adapt it together with you: your rates, your crews, your vehicles, your workflow.</p>
+    <div class="next">
+      <div><small>Step 1</small><b>Look around</b><p>Open the demo panel and click through the three companies.</p></div>
+      <div><small>Step 2</small><b>Tell us what is missing</b><p>We adjust fields, calculators and views to how your teams work.</p></div>
+      <div><small>Step 3</small><b>Set it up together</b><p>We help you enter rates, crews, fleet and stock, then the panel is yours.</p></div>
+    </div>
+    <a class="btn" href="https://gsg.flavoapp.com/admin" target="_blank" rel="noopener">Open the demo panel
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div>
+      <div class="who">
+        <img src="mikolaj.png" alt="">
+        <div><b>Mikołaj Chrustowski</b><a href="tel:+3547825558">+354 782 5558</a></div>
+      </div>
+    </div>
+    <p class="note">All names, numbers and amounts in the screenshots are sample demo data.</p>
+  </div>
+</section>
+
+<script>
+// Kropki nawigacji, strzałki na klawiaturze i pojawianie się treści przy przewijaniu
+const slides = [...document.querySelectorAll(".slide")];
+const dots = document.querySelector(".dots");
+slides.forEach((s) => { const a = document.createElement("a"); a.href = "#" + s.id; a.setAttribute("aria-label", s.id); dots.appendChild(a); });
+const links = [...dots.children];
+let current = 0;
+const io = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return;
+  e.target.querySelectorAll(".rv").forEach((el) => el.classList.add("in"));
+  current = slides.indexOf(e.target);
+  links.forEach((l, i) => l.classList.toggle("on", i === current));
+}), { threshold: 0.35 });
+slides.forEach((s) => io.observe(s));
+addEventListener("keydown", (e) => {
+  const d = ["ArrowRight", "PageDown", " "].includes(e.key) ? 1 : ["ArrowLeft", "PageUp"].includes(e.key) ? -1 : 0;
+  if (!d) return;
+  e.preventDefault();
+  slides[Math.max(0, Math.min(slides.length - 1, current + d))].scrollIntoView({ behavior: "smooth" });
+});
+</script>
+</body>
+</html>
