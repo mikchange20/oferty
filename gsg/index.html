@@ -89,6 +89,30 @@ h2 em { font-style: normal; color: var(--orange); }
 .before b { display: block; font-size: 1rem; }
 .before p { font-size: .92rem; color: var(--ink-soft); }
 
+/* Ladder: paper -> Trello -> Flavo */
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; align-items: end; }
+.rung { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 1.4rem; }
+.rung:nth-child(1) { opacity: .75; }
+.rung.now { min-height: 12rem; border-color: rgba(63,107,82,.35); }
+.rung.up { min-height: 15rem; background: var(--forest); color: var(--cream); border: 0; box-shadow: 0 30px 60px -30px rgba(28,58,43,.6); }
+.rung small { font-weight: 700; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+.rung.now small { color: var(--moss); }
+.rung.up small { color: var(--orange); }
+.rung b { display: block; font-size: 1.3rem; margin-top: .4rem; letter-spacing: -.01em; }
+.rung p { font-size: .93rem; color: var(--ink-soft); margin-top: .4rem; }
+.rung.up p { color: rgba(245,238,227,.75); }
+
+/* Questions: Trello vs Flavo */
+.qa { margin-top: 2.6rem; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--cream); }
+.qa-head, .qa-row { display: grid; grid-template-columns: 1.15fr 1fr 1.2fr; gap: 1.4rem; padding: .95rem 1.4rem; align-items: start; }
+.qa-head { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); background: var(--sand); }
+.qa-head span:last-child { color: var(--clay); }
+.qa-row + .qa-row { border-top: 1px solid var(--line); }
+.qa-row b { font-size: 1rem; line-height: 1.35; }
+.qa-row p { font-size: .92rem; line-height: 1.45; }
+.qa-row p:nth-of-type(1) { color: var(--ink-soft); }
+.qa-row p:nth-of-type(2) { color: var(--ink); font-weight: 600; padding-left: .9rem; border-left: 3px solid var(--orange); }
+
 /* Feature slides */
 .feat { display: grid; grid-template-columns: .85fr 1.4fr; gap: 3.5rem; align-items: center; }
 .feat.flip { grid-template-columns: 1.4fr .85fr; }
@@ -168,6 +192,12 @@ h2 em { font-style: normal; color: var(--orange); }
   .flow { grid-template-columns: 1fr; }
   .step:not(:last-child)::after { top: auto; bottom: -.8rem; left: 2rem; right: auto; width: 0; height: .8rem; border-top: 0; border-left: 2px dashed var(--orange); }
   .cards, .next { grid-template-columns: 1fr; }
+  .ladder { grid-template-columns: 1fr; }
+  .rung.now, .rung.up { min-height: 0; }
+  .qa-head { display: none; }
+  .qa-row { grid-template-columns: 1fr; gap: .5rem; }
+  .qa-row p:nth-of-type(1)::before { content: "Trello: "; font-weight: 700; }
+  .qa-row p:nth-of-type(2)::before { content: "Flavo: "; font-weight: 800; color: var(--clay); }
   .duo .shot:nth-child(2) { margin-top: 1.2rem; }
   .dots { display: none; }
 }
@@ -215,17 +245,35 @@ h2 em { font-style: normal; color: var(--orange); }
 
 <!-- 2. Today -->
 <section class="slide light" id="today">
-  <div class="wrap split">
+  <div class="wrap">
     <div class="rv">
-      <div class="kicker">The usual picture</div>
-      <h2>Three companies usually means <em>three of everything.</em></h2>
-      <p class="lead">Separate calendars, separate spreadsheets, separate phone calls. The owner sees the full picture only after asking around.</p>
+      <div class="kicker">Four years of progress</div>
+      <h2>From paper to Trello. <em>Next: one system.</em></h2>
+      <p class="lead">Moving three companies from paper, e-mails and messages to Trello was a big step. Your team already works with jobs and statuses. Flavo Multi keeps that habit and takes it one level up.</p>
     </div>
-    <div class="before rv">
-      <div><span>1</span><div><b>Who is where this week?</b><p>Crews and vehicles planned in different places, double bookings found on site.</p></div></div>
-      <div><span>2</span><div><b>What does this job cost?</b><p>Quotes priced by feel, different rates depending on who prepares them.</p></div></div>
-      <div><span>3</span><div><b>Do we have enough paint?</b><p>Stock lives in someone's head until it runs out mid-job.</p></div></div>
-      <div><span>4</span><div><b>What is finished but not invoiced?</b><p>Money for completed work waits because nobody has the list.</p></div></div>
+    <div class="ladder rv">
+      <div class="rung"><small>Before</small><b>Paper, e-mails, messages</b><p>Jobs lived in notebooks and inboxes. Only the person who wrote it down knew.</p></div>
+      <div class="rung now"><small>Today</small><b>Trello</b><p>Everyone sees the jobs on one board. A card says what to do and when.</p></div>
+      <div class="rung up"><small>Next</small><b>Flavo Multi</b><p>The system also knows the crews, the stock, the fleet, the prices and the money behind every job.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2b. Questions -->
+<section class="slide paper" id="questions">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">A quick test</div>
+      <h2>Five questions. <em>How fast can you answer them today?</em></h2>
+      <p class="lead">A Trello card is a good note. It has a title, a date and a checklist. It does not know how many bays a car park has, what paint is on the shelf or which truck is in the workshop.</p>
+    </div>
+    <div class="qa rv">
+      <div class="qa-head"><span></span><span>On a Trello board</span><span>In Flavo Multi</span></div>
+      <div class="qa-row"><b>Which crew is free next Tuesday?</b><p>Open the cards, compare dates, ask around.</p><p>The calendar shows every crew of every company, day by day.</p></div>
+      <div class="qa-row"><b>What do we charge for this car park?</b><p>Calculated in someone's head or a spreadsheet.</p><p>Enter bays and metres. The price comes from the same rates for everyone.</p></div>
+      <div class="qa-row"><b>Do we have enough thermoplastic for Monday?</b><p>Not on the board. Someone checks the shelf.</p><p>Stock goes down when a job is done. A warning comes before it runs out.</p></div>
+      <div class="qa-row"><b>Which truck is in the workshop, and until when?</b><p>A message, if someone remembers to send it.</p><p>Fleet status with the reason and the expected return date.</p></div>
+      <div class="qa-row"><b>How much did Vegamálun earn this year, and what is still not invoiced?</b><p>Not on the board. Someone has to put it together.</p><p>Finance per company, with a running total of finished work waiting for an invoice.</p></div>
     </div>
   </div>
 </section>
@@ -352,7 +400,7 @@ h2 em { font-style: normal; color: var(--orange); }
 <section class="slide close" id="next">
   <div class="wrap rv">
     <div class="kicker">Flavo <b>Multi</b></div>
-    <h2>Ready to try <span style="color:var(--orange)">with your data.</span></h2>
+    <h2>Trello was the right step. <span style="color:var(--orange)">This is the next one.</span></h2>
     <p class="lead">The demo is live with sample data. We adapt it together with you: your rates, your crews, your vehicles, your workflow.</p>
     <div class="next">
       <div><small>Step 1</small><b>Look around</b><p>Open the demo panel and click through the three companies.</p></div>
