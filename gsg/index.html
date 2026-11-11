@@ -113,6 +113,31 @@ h2 em { font-style: normal; color: var(--orange); }
 .qa-row p:nth-of-type(1) { color: var(--ink-soft); }
 .qa-row p:nth-of-type(2) { color: var(--ink); font-weight: 600; padding-left: .9rem; border-left: 3px solid var(--orange); }
 
+/* Monday: two columns, same hours */
+.day { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.6rem; }
+.day-col { border-radius: 20px; padding: 1.4rem 1.5rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); display: grid; gap: 1rem; align-content: start; }
+.day-col.up { background: var(--paper); color: var(--ink); border: 0; box-shadow: 0 30px 70px -30px rgba(0,0,0,.6); }
+.day-h { font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,238,227,.6); }
+.day-col.up .day-h { color: var(--clay); }
+.day-row { display: grid; grid-template-columns: 3.4rem 1fr; gap: .8rem; align-items: baseline; }
+.day-row time { font-weight: 800; font-variant-numeric: tabular-nums; color: var(--orange); }
+.day-col.up .day-row time { color: var(--moss); }
+.day-row p { font-size: .97rem; line-height: 1.45; color: rgba(245,238,227,.72); }
+.day-row p b { color: var(--cream); font-weight: 700; }
+.day-col.up .day-row p { color: var(--ink-soft); }
+.day-col.up .day-row p b { color: var(--ink); }
+
+/* One app: module tiles */
+.mods { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem; margin-top: 2.6rem; }
+.mod { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 1.2rem 1.2rem 1.3rem; display: grid; gap: .45rem; align-content: start; }
+.mod-ic { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: #dcebe0; color: var(--moss); }
+.mod-ic svg { width: 21px; height: 21px; }
+.mod b { font-size: 1.05rem; margin-top: .35rem; }
+.mod p { font-size: .88rem; line-height: 1.45; color: var(--ink-soft); }
+.mod .tag { justify-self: start; margin-top: .3rem; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; background: #dcebe0; color: var(--moss); }
+.mod.soon { border-style: dashed; border-color: rgba(199,95,50,.45); }
+.mod.soon .mod-ic, .mod.soon .tag { background: #f6dccb; color: var(--clay); }
+
 /* Feature slides */
 .feat { display: grid; grid-template-columns: .85fr 1.4fr; gap: 3.5rem; align-items: center; }
 .feat.flip { grid-template-columns: 1.4fr .85fr; }
@@ -177,6 +202,7 @@ h2 em { font-style: normal; color: var(--orange); }
 @keyframes rise { from { transform: translateY(18px); } }
 @media (prefers-reduced-motion: reduce) { .rv.in { animation: none; } .co, .wires path { animation: none; } }
 
+@media (max-width: 1100px) { .mods { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 900px) {
   html { scroll-snap-type: none; }
   .slide { min-height: auto; padding-block: 4.5rem; }
@@ -192,7 +218,8 @@ h2 em { font-style: normal; color: var(--orange); }
   .flow { grid-template-columns: 1fr; }
   .step:not(:last-child)::after { top: auto; bottom: -.8rem; left: 2rem; right: auto; width: 0; height: .8rem; border-top: 0; border-left: 2px dashed var(--orange); }
   .cards, .next { grid-template-columns: 1fr; }
-  .ladder { grid-template-columns: 1fr; }
+  .ladder, .day { grid-template-columns: 1fr; }
+  .mods { grid-template-columns: 1fr 1fr; }
   .rung.now, .rung.up { min-height: 0; }
   .qa-head { display: none; }
   .qa-row { grid-template-columns: 1fr; gap: .5rem; }
@@ -259,6 +286,32 @@ h2 em { font-style: normal; color: var(--orange); }
   </div>
 </section>
 
+<!-- 2a. Monday -->
+<section class="slide dark" id="monday">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">One ordinary <b>Monday</b></div>
+      <h2>Same day, same crews. <em>Two very different Mondays.</em></h2>
+    </div>
+    <div class="day rv">
+      <div class="day-col">
+        <div class="day-h">With a board, messages and the phone</div>
+        <div class="day-row"><time>07:00</time><p>The phone rings: <b>which site are we on today?</b> The foreman checks the board and calls back.</p></div>
+        <div class="day-row"><time>09:30</time><p>On site, <b>the thermoplastic runs short.</b> Someone drives back to the warehouse.</p></div>
+        <div class="day-row"><time>12:00</time><p>A client wants a price for a car park. <b>"I'll get back to you tomorrow."</b></p></div>
+        <div class="day-row"><time>17:00</time><p>The job is finished. <b>Will someone remember the invoice?</b></p></div>
+      </div>
+      <div class="day-col up">
+        <div class="day-h">With Flavo Multi</div>
+        <div class="day-row"><time>07:00</time><p>Every crew opens the calendar on the phone. <b>Everyone knows their site.</b></p></div>
+        <div class="day-row"><time>09:30</time><p>The paint went under its minimum last week. <b>The cockpit warned you in time.</b></p></div>
+        <div class="day-row"><time>12:00</time><p>Bays and metres into the calculator. <b>The price is ready during the call.</b></p></div>
+        <div class="day-row"><time>17:00</time><p>Job marked done. <b>Materials come off stock, the job waits in Finance for its invoice.</b></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 2b. Questions -->
 <section class="slide paper" id="questions">
   <div class="wrap">
@@ -274,6 +327,27 @@ h2 em { font-style: normal; color: var(--orange); }
       <div class="qa-row"><b>Do we have enough thermoplastic for Monday?</b><p>Not on the board. Someone checks the shelf.</p><p>Stock goes down when a job is done. A warning comes before it runs out.</p></div>
       <div class="qa-row"><b>Which truck is in the workshop, and until when?</b><p>A message, if someone remembers to send it.</p><p>Fleet status with the reason and the expected return date.</p></div>
       <div class="qa-row"><b>How much did Vegamálun earn this year, and what is still not invoiced?</b><p>Not on the board. Someone has to put it together.</p><p>Finance per company, with a running total of finished work waiting for an invoice.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2c. One app -->
+<section class="slide light" id="one-app">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">Everything in one app</div>
+      <h2>One login. <em>The whole group under control.</em></h2>
+      <p class="lead">No more switching between a board, a spreadsheet, the phone and a notebook. Everything below lives in one panel, for all three companies.</p>
+    </div>
+    <div class="mods rv">
+      <div class="mod"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.8.3 5 2.6 5 5.8"/></svg></div><b>Workers and crews</b><p>Every worker in a crew, every crew in its company.</p><span class="tag">In the demo</span></div>
+      <div class="mod"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><b>Calendar</b><p>Planned work per crew, day by day, for each company.</p><span class="tag">In the demo</span></div>
+      <div class="mod"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17L17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></svg></div><b>Metres per job</b><p>Bays, lines and crossings painted on every job, priced by the calculator.</p><span class="tag">In the demo</span></div>
+      <div class="mod"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/></svg></div><b>Paint inventory</b><p>Paint, beads, parts and machines in each warehouse, with reorder warnings.</p><span class="tag">In the demo</span></div>
+      <div class="mod"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></div><b>Fleet</b><p>Vehicles in use or out of service, with the date they come back.</p><span class="tag">In the demo</span></div>
+      <div class="mod"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><b>Finance</b><p>Revenue per company and month, and what is still waiting for an invoice.</p><span class="tag">In the demo</span></div>
+      <div class="mod soon"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><b>Hours</b><p>Every worker logs the day on the phone. At month end, one Excel file per worker.</p><span class="tag">Built for GSG</span></div>
+      <div class="mod soon"><div class="mod-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l1 4H5z"/><path d="M5 7h14v13H5z"/><path d="M9 11h6"/></svg></div><b>Orders</b><p>Stencils, paint and supplies ordered from the panel, with the status of each order.</p><span class="tag">Built for GSG</span></div>
     </div>
   </div>
 </section>
@@ -393,6 +467,23 @@ h2 em { font-style: normal; color: var(--orange); }
       </div>
     </div>
     <div class="rv"><div class="phone"><img src="img/phone.jpg" alt="Cockpit on a phone"></div></div>
+  </div>
+</section>
+
+<!-- 9b. Switching -->
+<section class="slide paper" id="switch">
+  <div class="wrap split">
+    <div class="rv">
+      <div class="kicker">Switching</div>
+      <h2>A change <em>without stopping the season.</em></h2>
+      <p class="lead">Moving from paper to Trello already showed that your teams can change how they work. This step is smaller.</p>
+    </div>
+    <div class="before rv">
+      <div><span>1</span><div><b>Start with one company</b><p>Pick GSG, Vegamálun or Malbik. The others follow when it works.</p></div></div>
+      <div><span>2</span><div><b>The same habit</b><p>Jobs and statuses, like cards on the board. Nothing new to learn for the crews.</p></div></div>
+      <div><span>3</span><div><b>We set it up together</b><p>Your rates, crews, vehicles and stock, entered with our help.</p></div></div>
+      <div><span>4</span><div><b>On the phones they already have</b><p>No new devices. The panel opens in the browser.</p></div></div>
+    </div>
   </div>
 </section>
 
