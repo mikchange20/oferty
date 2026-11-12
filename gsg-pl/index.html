@@ -9,7 +9,7 @@
 <link rel="icon" href="../gsg/flavo-favicon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Prezentacja Flavo Multi dla właściciela GSG (Mikołaj 29.10.2026). Zrzuty z panelu na danych demo, w gsg/. */
 /* Slajdy na całą wysokość, na zmianę ciemna zieleń i krem; jeden wygląd niezależnie od motywu */
@@ -28,6 +28,7 @@
   --moss: #3f6b52;
   --mustard: #c99a2e;
   --line: rgba(29,42,35,.12);
+  --hand: "Caveat", "Bradley Hand", "Segoe Print", cursive;
   --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 * { box-sizing: border-box; }
@@ -91,16 +92,42 @@ h2 em { font-style: normal; color: var(--orange); }
 
 /* Ladder: paper -> Trello -> Flavo */
 .ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; align-items: end; }
-.rung { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 1.4rem; }
-.rung:nth-child(1) { opacity: .75; }
-.rung.now { min-height: 12rem; border-color: rgba(63,107,82,.35); }
-.rung.up { min-height: 15rem; background: var(--forest); color: var(--cream); border: 0; box-shadow: 0 30px 60px -30px rgba(28,58,43,.6); }
-.rung small { font-weight: 700; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
-.rung.now small { color: var(--moss); }
-.rung.up small { color: var(--orange); }
-.rung b { display: block; font-size: 1.3rem; margin-top: .4rem; letter-spacing: -.01em; }
-.rung p { font-size: .93rem; color: var(--ink-soft); margin-top: .4rem; }
-.rung.up p { color: rgba(245,238,227,.75); }
+.rung small { font-weight: 700; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+.rung b { display: block; letter-spacing: -.01em; }
+.rung p { font-size: .93rem; margin-top: .4rem; }
+/* 1. Kartka z zeszytu: linie, margines, taśma, pismo odręczne */
+.r-paper { position: relative; padding: 1.6rem 1.4rem 1.5rem 2.6rem; color: #3b3a36; transform: rotate(-2.2deg); border-radius: 3px;
+  background: linear-gradient(90deg, transparent 2rem, rgba(199,95,50,.45) 2rem, rgba(199,95,50,.45) calc(2rem + 1px), transparent calc(2rem + 1px)), repeating-linear-gradient(180deg, #fffdf6 0 1.55rem, #c9d6e3 1.55rem calc(1.55rem + 1px)), #fffdf6;
+  box-shadow: 0 1px 1px rgba(0,0,0,.08), 0 14px 24px -14px rgba(60,50,30,.45); }
+.r-paper::before { content: ""; position: absolute; top: -10px; left: 50%; width: 76px; height: 22px; margin-left: -38px; transform: rotate(3deg); background: rgba(231,214,189,.85); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.r-paper small { color: #8a857a; }
+.r-paper b { font-family: var(--hand); font-weight: 700; font-size: 1.85rem; line-height: 1.05; margin-top: .35rem; color: #24427a; }
+.r-paper p { font-family: var(--hand); font-weight: 600; font-size: 1.28rem; line-height: 1.55rem; color: #3d4a63; }
+/* 2. Kolumna tablicy z kartą zadania */
+.r-board { background: #e4e7ec; border-radius: 14px; padding: .75rem; display: grid; gap: .55rem; box-shadow: 0 10px 24px -16px rgba(9,30,66,.5); }
+.r-board .col-h { display: flex; justify-content: space-between; font-size: .85rem; font-weight: 700; color: #3c4658; padding: .2rem .35rem; }
+.r-board .col-h span { letter-spacing: .1em; color: #8590a2; }
+.kcard { background: #fff; border-radius: 9px; padding: .75rem .85rem .8rem; box-shadow: 0 1px 1px rgba(9,30,66,.25), 0 0 1px rgba(9,30,66,.3); color: #172b4d; }
+.kcard .labels { display: flex; gap: .3rem; }
+.kcard .labels i { width: 2.4rem; height: .5rem; border-radius: 4px; }
+.kcard b { font-size: 1.15rem; margin-top: .55rem; }
+.kcard p { font-size: .88rem; color: #44546f; }
+.kcard .meta { display: flex; gap: .9rem; margin-top: .6rem; font-size: .78rem; color: #626f86; font-variant-numeric: tabular-nums; }
+.kcard .meta span { display: inline-flex; align-items: center; gap: .3rem; }
+.kcard .meta svg { width: 14px; height: 14px; }
+.kcard.ghost { height: 2.2rem; background: rgba(255,255,255,.55); box-shadow: none; }
+/* 3. Flavo: najwyższy, ciemny, ze złotym brzegiem */
+.r-flavo { position: relative; overflow: hidden; border-radius: 24px; padding: 1.7rem 1.6rem 1.5rem; color: var(--cream);
+  background: radial-gradient(120% 90% at 85% 0%, var(--forest-3), var(--forest) 60%);
+  box-shadow: 0 0 0 1px rgba(244,210,139,.45), 0 40px 70px -30px rgba(28,58,43,.75), 0 0 60px -20px rgba(240,149,63,.45); transform: translateY(-.6rem); }
+.r-flavo .mark { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; background: rgba(245,238,227,.08); box-shadow: inset 0 0 0 1px rgba(244,210,139,.35); margin-bottom: 1rem; }
+.r-flavo .mark svg { width: 26px; height: auto; }
+.r-flavo small { color: var(--orange); }
+.r-flavo b { font-size: 1.9rem; margin-top: .35rem; letter-spacing: -.02em; }
+.r-flavo p { color: rgba(245,238,227,.78); }
+.r-flavo .mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(244,210,139,.22); }
+.r-flavo .mini span { font-size: .72rem; line-height: 1.25; color: rgba(245,238,227,.6); }
+.r-flavo .mini em { display: block; font-style: normal; font-size: 1.35rem; font-weight: 800; color: #f4d28b; font-variant-numeric: tabular-nums; }
 
 /* Questions: Trello vs Flavo */
 .qa { margin-top: 2.6rem; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--cream); }
@@ -220,7 +247,8 @@ h2 em { font-style: normal; color: var(--orange); }
   .cards, .next { grid-template-columns: 1fr; }
   .ladder, .day { grid-template-columns: 1fr; }
   .mods { grid-template-columns: 1fr 1fr; }
-  .rung.now, .rung.up { min-height: 0; }
+  .r-paper { transform: rotate(-1.2deg); }
+  .r-flavo { transform: none; }
   .qa-head { display: none; }
   .qa-row { grid-template-columns: 1fr; gap: .5rem; }
   .qa-row p:nth-of-type(1)::before { content: "Trello: "; font-weight: 700; }
@@ -279,9 +307,21 @@ h2 em { font-style: normal; color: var(--orange); }
       <p class="lead">Przeniesienie trzech firm z kartek, maili i wiadomości do Trello to był duży krok. Twój zespół już pracuje na zleceniach i statusach. Flavo Multi zostawia ten nawyk i wnosi go poziom wyżej.</p>
     </div>
     <div class="ladder rv">
-      <div class="rung"><small>Kiedyś</small><b>Kartki, maile, wiadomości</b><p>Zlecenia były w zeszytach i skrzynkach. Wiedział tylko ten, kto zapisał.</p></div>
-      <div class="rung now"><small>Dziś</small><b>Trello</b><p>Wszyscy widzą zlecenia na jednej tablicy. Karta mówi, co zrobić i kiedy.</p></div>
-      <div class="rung up"><small>Dalej</small><b>Flavo Multi</b><p>System zna też ekipy, magazyn, flotę, ceny i pieniądze za każdym zleceniem.</p></div>
+      <div class="rung r-paper"><small>Kiedyś</small><b>Kartki, maile, wiadomości</b><p>Zlecenia były w zeszytach i skrzynkach. Wiedział tylko ten, kto zapisał.</p></div>
+      <div class="rung r-board">
+        <div class="col-h">Dziś<span>&middot;&middot;&middot;</span></div>
+        <div class="kcard">
+          <div class="labels"><i style="background:#4bce97"></i><i style="background:#f5cd47"></i><i style="background:#579dff"></i></div>
+          <b>Trello</b><p>Wszyscy widzą zlecenia na jednej tablicy. Karta mówi, co zrobić i kiedy.</p>
+          <div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>pon. 07:00</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>2/5</span></div>
+        </div>
+        <div class="kcard ghost"></div>
+      </div>
+      <div class="rung r-flavo">
+        <div class="mark"><svg viewBox="70 75 230 260" aria-hidden="true"><path fill="#F5EEE3" d="M73 181V147C73 109 102 78 140 78H263C282 78 295 91 295 110C295 137 274 158 245 158H143C119 158 99 167 83 185C79 191 73 189 73 181Z"/><path fill="#F0953F" d="M73 250V236C73 200 101 171 138 171H188C208 171 222 184 222 203C222 227 201 244 175 244H117C103 244 91 249 82 257C77 262 73 259 73 250Z"/><ellipse fill="#F4D28B" cx="114" cy="292" rx="41" ry="40"/></svg></div>
+        <small>Dalej</small><b>Flavo Multi</b><p>System zna też ekipy, magazyn, flotę, ceny i pieniądze za każdym zleceniem.</p>
+        <div class="mini"><span><em>3</em>firmy</span><span><em>1</em>panel</span><span><em>1</em>logowanie</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -561,6 +601,11 @@ addEventListener("keydown", (e) => {
 .dark::before, .hero::before, .close::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .09; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .dark > .wrap, .hero > .wrap, .close > .wrap { position: relative; z-index: 1; }
 
+/* Karta Flavo na slajdzie postępu: jeden błysk światła, gdy slajd wjeżdża */
+.r-flavo::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; pointer-events: none; transform: skewX(-18deg); background: linear-gradient(90deg, transparent, rgba(244,210,139,.22), transparent); opacity: 0; }
+.rv.in .r-flavo::after { animation: shine 1.6s .9s ease-out forwards; }
+@keyframes shine { 0% { left: -60%; opacity: 1; } 100% { left: 130%; opacity: 1; } }
+
 /* Kursor: wiadro z żółtą farbą drogową (jak śnieżynka w kampanii świątecznej Lunchee), tylko na komputerze */
 @media (hover: hover) and (pointer: fine) { body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M6 11h20l-2.2 16.5a2 2 0 0 1-2 1.7H10.2a2 2 0 0 1-2-1.7z'/%3E%3Cpath d='M7.5 11C7.5 4.5 24.5 4.5 24.5 11'/%3E%3Cpath d='M10 12v7'/%3E%3C/g%3E%3Cg stroke='%231c3a2b' stroke-width='1.6' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath fill='none' d='M7.5 11C7.5 4.5 24.5 4.5 24.5 11'/%3E%3Cpath fill='%23e9e4da' d='M6 11h20l-2.2 16.5a2 2 0 0 1-2 1.7H10.2a2 2 0 0 1-2-1.7z'/%3E%3Cpath fill='%23f0953f' stroke='none' d='M7.6 18.5h16.8l-.6 4.5H8.2z'/%3E%3Cellipse cx='16' cy='11' rx='10' ry='2.4' fill='%23f4d28b'/%3E%3Cpath fill='%23f4d28b' d='M8.6 12.3c0 2.6.2 5 1.4 6.6 1.2-1.6 1.2-4 1.2-6.2z'/%3E%3C/g%3E%3C/svg%3E") 9 18, auto; } }
 
@@ -568,7 +613,7 @@ addEventListener("keydown", (e) => {
   .hero-road .paint { animation: none; width: 100%; }
   .hero-road .rig { display: none; }
   .kicker::after { transform: none; }
-  .rv.in .kicker::after { animation: none; }
+  .rv.in .kicker::after, .rv.in .r-flavo::after { animation: none; }
 }
 </style>
 <div class="road-bar" aria-hidden="true"><i></i></div>
