@@ -531,5 +531,55 @@ addEventListener("keydown", (e) => {
   slides[Math.max(0, Math.min(slides.length - 1, current + d))].scrollIntoView({ behavior: "smooth" });
 });
 </script>
+
+<!-- Drogowe smaczki do prezentacji GSG (Mikołaj 11.11: nawiązania do malowania dróg i asfaltu, bez przesady).
+     Wstawiane przez gsg-pl.py przed </body> polskiej wersji: pasek przewijania jak malowana linia na asfalcie,
+     linia środkowa malowana na okładce, pociągnięcie farby pod nagłówkami, ziarno asfaltu na ciemnych slajdach. -->
+<style>
+/* Pasek postępu: pas asfaltu, po którym przewijanie maluje żółte przerywane linie */
+.road-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; pointer-events: none; padding-top: env(safe-area-inset-top, 0px); background: #1a1f1c; }
+.road-bar i { display: block; height: 8px; width: 0; background: repeating-linear-gradient(90deg, #f4d28b 0 28px, transparent 28px 44px) left center / auto 3px no-repeat, transparent; }
+.road-bar { height: calc(8px + env(safe-area-inset-top, 0px)); }
+
+/* Okładka: maszyna maluje linię środkową przez całą szerokość */
+.hero-road { position: absolute; left: 0; right: 0; bottom: 2rem; height: 4px; pointer-events: none; }
+.hero-road .paint { position: absolute; left: 0; top: 0; height: 4px; width: 0; background: repeating-linear-gradient(90deg, rgba(245,238,227,.55) 0 46px, transparent 46px 74px); animation: road-paint 3.2s 0.6s cubic-bezier(.45,.05,.4,1) forwards; }
+.hero-road .rig { position: absolute; top: -7px; left: 0; width: 18px; height: 18px; border-radius: 5px; background: var(--orange); box-shadow: 0 0 0 3px rgba(240,149,63,.25), 0 0 16px rgba(240,149,63,.7); animation: road-rig 3.2s 0.6s cubic-bezier(.45,.05,.4,1) forwards, rig-fade .6s 3.9s forwards; }
+@keyframes road-paint { to { width: 100%; } }
+@keyframes road-rig { to { left: calc(100% - 18px); } }
+@keyframes rig-fade { to { opacity: 0; } }
+
+/* Pod etykietą slajdu: krótkie pociągnięcie farby, gdy slajd wjeżdża */
+.kicker { position: relative; padding-bottom: .55rem; }
+.kicker::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 2.4rem; border-radius: 2px 6px 4px 1px; background: var(--orange); transform: scaleX(0); transform-origin: left; }
+.close .kicker::after { left: 50%; margin-left: -1.2rem; }
+.rv.in .kicker::after, .rv.in.kicker::after { animation: stroke .7s .25s cubic-bezier(.3,.7,.3,1) forwards; }
+@keyframes stroke { to { transform: scaleX(1); } }
+
+/* Ciemne slajdy: lekkie ziarno asfaltu */
+.dark::before, .hero::before, .close::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .09; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.dark > .wrap, .hero > .wrap, .close > .wrap { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-road .paint { animation: none; width: 100%; }
+  .hero-road .rig { display: none; }
+  .kicker::after { transform: none; }
+  .rv.in .kicker::after { animation: none; }
+}
+</style>
+<div class="road-bar" aria-hidden="true"><i></i></div>
+<script>
+// Linia środkowa na okładce i pasek przewijania malowany na asfalcie
+document.querySelector(".hero").insertAdjacentHTML("beforeend", '<div class="hero-road" aria-hidden="true"><div class="paint"></div><div class="rig"></div></div>');
+const roadPaint = document.querySelector(".road-bar i");
+let roadTick = false;
+const roadUpdate = () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  roadPaint.style.width = (max > 0 ? Math.min(100, (scrollY / max) * 100) : 0) + "%";
+  roadTick = false;
+};
+addEventListener("scroll", () => { if (!roadTick) { roadTick = true; requestAnimationFrame(roadUpdate); } }, { passive: true });
+roadUpdate();
+</script>
 </body>
 </html>
